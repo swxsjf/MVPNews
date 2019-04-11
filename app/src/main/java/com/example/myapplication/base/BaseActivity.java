@@ -11,19 +11,19 @@ import android.support.v4.app.FragmentActivity;
  * Time: 15:50
  * Describe: ${as}
  */
-public abstract class BaseActivity<T extends BasePresenter> extends FragmentActivity implements BaseView {
-    private T presenter;
+public abstract class BaseActivity<P extends BasePresenter,V extends BaseView,D> extends FragmentActivity implements BaseView<D> {
+    protected P presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter = this.initPresenter();
+        presenter = initPresenter();
         presenter.attachView(this);
 
     }
 
-    protected abstract T initPresenter();
+    protected abstract P initPresenter();
 
     @Override
     protected void onDestroy() {

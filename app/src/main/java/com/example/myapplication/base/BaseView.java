@@ -7,6 +7,10 @@ package com.example.myapplication.base;
  * Time: 15:47
  * Describe: ${as}
  */
-public interface BaseView {
+public interface BaseView<D> {
+
+    void onSuccess(D data);
+
+    void onFailure(String message);
 
 }

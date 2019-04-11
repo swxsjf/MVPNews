@@ -9,7 +9,7 @@ package com.example.myapplication.base;
  */
 public class BasePresenter<V extends BaseView> {
 
-    private V view;
+    protected V view;
 
     public void attachView(V view){
         this.view = view;
@@ -17,6 +17,10 @@ public class BasePresenter<V extends BaseView> {
 
     public void detachView(){
         this.view = null;
+    }
+
+    public boolean isAttach(){
+        return view != null;
     }
 
 }

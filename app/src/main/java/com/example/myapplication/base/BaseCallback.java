@@ -7,5 +7,10 @@ package com.example.myapplication.base;
  * Time: 15:50
  * Describe: ${as}
  */
-public interface BaseCallback {
+public interface BaseCallback<D> {
+
+    void onSuccess(D data);
+
+    void onFailure(String message);
+
 }
