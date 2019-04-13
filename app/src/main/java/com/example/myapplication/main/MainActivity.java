@@ -1,15 +1,12 @@
 package com.example.myapplication.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.base.BaseActivity;
-import com.example.myapplication.base.BasePresenter;
-import com.example.myapplication.base.BaseView;
+import com.example.myapplication.base.MvpActivity;
 
-public class MainActivity extends BaseActivity<MainPresenter,MainView,WordBean> implements MainView {
+public class MainActivity extends MvpActivity<MainPresenter,MainView,WordBean> implements MainView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

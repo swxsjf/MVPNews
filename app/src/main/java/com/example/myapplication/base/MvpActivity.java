@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentActivity;
  * Time: 15:50
  * Describe: ${as}
  */
-public abstract class BaseActivity<P extends BasePresenter,V extends BaseView,D> extends FragmentActivity implements BaseView<D> {
+public abstract class MvpActivity<P extends BasePresenter,V extends BaseView,D> extends BaseActivity implements BaseView<D> {
     protected P presenter;
 
     @Override

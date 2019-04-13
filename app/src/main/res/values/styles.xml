@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ActivityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:windowBackground">@drawable/splash_bg_newyear</item>
+        <item name="android:windowFullscreen">true</item>
+
+    </style>
+
 </resources>
