@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.myapplication.R;
@@ -47,6 +48,15 @@ public class GuidePagerAdapter extends PagerAdapter {
 
         View view = inflater.inflate(R.layout.pager_guide, container,false);
         ImageView imageViewId = view.findViewById(R.id.imageView);
+        Button exprienceButton = view.findViewById(R.id.exprienceButton);
+
+        if (guideResList.size()-1 == position){
+            exprienceButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            exprienceButton.setVisibility(View.INVISIBLE);
+        }
+
         Integer resId = guideResList.get(position);
         imageViewId.setImageResource(resId);
 
