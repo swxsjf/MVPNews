@@ -2,7 +2,6 @@ package com.example.myapplication.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 
 /**
  * Created by Android Studio.
@@ -18,12 +17,19 @@ public abstract class MvpActivity<P extends BasePresenter,V extends BaseView,D> 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        presenter = initPresenter();
+        presenter = createPresenter();
         presenter.attachView(this);
+
+        initView();
+        initData();
 
     }
 
-    protected abstract P initPresenter();
+    protected abstract void initData();
+
+    protected abstract void initView();
+
+    protected abstract P createPresenter();
 
     @Override
     protected void onDestroy() {

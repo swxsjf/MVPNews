@@ -1,5 +1,6 @@
 package com.example.myapplication.guide;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -12,6 +13,9 @@ import android.view.ViewTreeObserver;
 
 import com.example.myapplication.R;
 import com.example.myapplication.base.BaseActivity;
+import com.example.myapplication.main.Main2Activity;
+import com.example.myapplication.utils.NewsConstants;
+import com.example.myapplication.utils.PreferenceUtils;
 
 public class GuideActivity extends BaseActivity {
 
@@ -19,15 +23,25 @@ public class GuideActivity extends BaseActivity {
     private View redDotView;
     private ConstraintLayout daLayout;
     private float distance;
+    private GuidePagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guide);
+//        setContentView(R.layout.activity_guide);
 
         initView();
 
-        guideViewPager.setAdapter(new GuidePagerAdapter());
+        adapter = new GuidePagerAdapter();
+        adapter.setGuideButton(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GuideActivity.this.startActivity(new Intent(GuideActivity.this, Main2Activity.class));
+                PreferenceUtils.putBoolean(NewsConstants.START_GUIDE_ACTIVITY,false);
+                GuideActivity.this.finish();
+            }
+        });
+        guideViewPager.setAdapter(adapter);
 
         daLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -59,6 +73,11 @@ public class GuideActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_guide;
     }
 
     private void initView() {

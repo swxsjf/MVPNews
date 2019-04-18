@@ -1,4 +1,4 @@
-package com.example.myapplication.main;
+package com.example.myapplication.translate;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,19 +6,34 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.base.MvpActivity;
 
-public class MainActivity extends MvpActivity<MainPresenter,MainView,WordBean> implements MainView {
+public class TranslateActivity extends MvpActivity<TranslatePresenter, TranslateView,WordBean> implements TranslateView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
         presenter.translate("json","auto","code");
     }
 
     @Override
-    protected MainPresenter initPresenter() {
-        return new MainPresenter();
+    protected int getContentView() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected TranslatePresenter createPresenter() {
+        return new TranslatePresenter();
     }
 
     @Override

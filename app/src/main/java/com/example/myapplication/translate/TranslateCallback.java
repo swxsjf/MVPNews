@@ -1,4 +1,4 @@
-package com.example.myapplication.main;
+package com.example.myapplication.translate;
 
 import com.example.myapplication.base.BaseCallback;
 
@@ -9,5 +9,5 @@ import com.example.myapplication.base.BaseCallback;
  * Time: 16:50
  * Describe: ${as}
  */
-public interface MainCallback extends BaseCallback<WordBean> {
+public interface TranslateCallback extends BaseCallback<WordBean> {
 }

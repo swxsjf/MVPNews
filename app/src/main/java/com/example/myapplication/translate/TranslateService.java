@@ -1,4 +1,4 @@
-package com.example.myapplication.main;
+package com.example.myapplication.translate;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

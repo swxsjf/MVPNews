@@ -1,4 +1,4 @@
-package com.example.myapplication.main;
+package com.example.myapplication.translate;
 
 import java.util.List;
 

@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import com.example.myapplication.R;
 import com.example.myapplication.base.BaseActivity;
 import com.example.myapplication.guide.GuideActivity;
+import com.example.myapplication.main.Main2Activity;
+import com.example.myapplication.utils.NewsConstants;
+import com.example.myapplication.utils.PreferenceUtils;
 
 public class SplashActivity extends BaseActivity {
 
@@ -20,11 +23,16 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+//        setContentView(R.layout.activity_splash);
 
         initView();
 
         startAnimatorSet(animationLayout);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_splash;
     }
 
     private void startAnimatorSet(ImageView animationLayout) {
@@ -39,9 +47,20 @@ public class SplashActivity extends BaseActivity {
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                Intent intent = new Intent(context, GuideActivity.class);
-                SplashActivity.this.startActivity(intent);
-                SplashActivity.this.finish();
+
+                boolean aBoolean = PreferenceUtils.getBoolean(NewsConstants.START_GUIDE_ACTIVITY, true);
+
+                if (aBoolean){
+                    Intent intent = new Intent(context, GuideActivity.class);
+                    SplashActivity.this.startActivity(intent);
+                    SplashActivity.this.finish();
+                }
+                else {
+                    Intent intent = new Intent(context, Main2Activity.class);
+                    SplashActivity.this.startActivity(intent);
+                    SplashActivity.this.finish();
+                }
+
             }
         });
 

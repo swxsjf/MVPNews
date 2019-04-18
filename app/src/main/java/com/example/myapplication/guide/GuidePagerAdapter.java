@@ -23,11 +23,16 @@ import java.util.List;
  */
 public class GuidePagerAdapter extends PagerAdapter {
     private List<Integer> guideResList = new ArrayList<>();
+    private View.OnClickListener guideButton;
 
     public GuidePagerAdapter() {
         guideResList.add(R.drawable.guide_1);
         guideResList.add(R.drawable.guide_2);
         guideResList.add(R.drawable.guide_3);
+    }
+
+    public void setGuideButton(View.OnClickListener guideButton) {
+        this.guideButton = guideButton;
     }
 
     @Override
@@ -49,6 +54,8 @@ public class GuidePagerAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.pager_guide, container,false);
         ImageView imageViewId = view.findViewById(R.id.imageView);
         Button exprienceButton = view.findViewById(R.id.exprienceButton);
+
+        exprienceButton.setOnClickListener(guideButton);
 
         if (guideResList.size()-1 == position){
             exprienceButton.setVisibility(View.VISIBLE);
