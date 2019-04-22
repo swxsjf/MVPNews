@@ -65,8 +65,8 @@ public class Main2Activity extends MvpActivity<MainPresenter, MainView, AvatarBe
         super.onCreate(savedInstanceState);
 //        setContentView();
 
-        initView();
-        initData();
+//        initView();
+//        initData();
 
     }
 
@@ -77,7 +77,7 @@ public class Main2Activity extends MvpActivity<MainPresenter, MainView, AvatarBe
 
     @Override
     protected void initData() {
-        presenter.getNewsCategory();
+         presenter.getNewsCategory();
         avatarImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,7 +221,7 @@ public class Main2Activity extends MvpActivity<MainPresenter, MainView, AvatarBe
             MenuItem menuItem = menu.add(title);
             menuItem.setIcon(R.drawable.menu_arr_normal);
         }
-        TraverseUtils.traverse(navigationView);
+//        TraverseUtils.traverse(navigationView);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

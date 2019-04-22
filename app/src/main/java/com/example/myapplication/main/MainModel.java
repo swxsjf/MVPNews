@@ -1,5 +1,7 @@
 package com.example.myapplication.main;
 
+import android.util.Log;
+
 import com.example.myapplication.base.BaseModel;
 import com.example.myapplication.main.bean.AvatarBean;
 import com.example.myapplication.main.bean.NewsCategory;
@@ -11,6 +13,7 @@ import com.example.myapplication.utils.NewsConstants;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -32,7 +35,7 @@ public class MainModel extends BaseModel {
 
     public void upload(String path, final MainCallback callback){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://fanyi.youdao.com/")
+                .baseUrl("https://sm.ms/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -90,6 +93,11 @@ public class MainModel extends BaseModel {
             public void onResponse(Call<NewsCategory> call, Response<NewsCategory> response) {
                 if (callback != null){
                     if (response.isSuccessful()){
+                        List<NewsCategory.DataBean> data = response.body().getData();
+                        for(int i=0;i<data.size();i++){
+                            Log.i("weixing",data.get(i).getTitle());
+                        }
+
                         callback.onSuccess(response.body());
                     }
                     else {

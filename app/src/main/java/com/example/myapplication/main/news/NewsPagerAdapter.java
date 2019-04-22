@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ import java.util.List;
  * Describe: ${as}
  */
 public class NewsPagerAdapter extends PagerAdapter {
-    List<NewsCategory.DataBean.ChildrenBean> children  = new ArrayList<>();
+    List<NewsCategory.DataBean.ChildrenBean> children;
 
     public NewsPagerAdapter(List<NewsCategory.DataBean.ChildrenBean> children) {
         this.children = children;
@@ -47,9 +48,11 @@ public class NewsPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        Context context = container.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View pager = inflater.inflate(R.layout.pager_news, container, false);
+        NewsPagerManger manger = new NewsPagerManger(container);
+        View pager = manger.createPager();
+        String url = children.get(position).getUrl();
+        String newUrl = url.substring(1);
+        manger.initData(newUrl);
         container.addView(pager);
 
         return pager;
@@ -59,4 +62,5 @@ public class NewsPagerAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
+
 }
