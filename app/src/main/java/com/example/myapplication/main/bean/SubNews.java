@@ -94,6 +94,7 @@ public class SubNews {
         }
 
         public static class NewsBean {
+            public Object getListimage;
             /**
              * comment : true
              * commentlist : http://10.0.2.2:8080/zhbj/10007/comment_1.json

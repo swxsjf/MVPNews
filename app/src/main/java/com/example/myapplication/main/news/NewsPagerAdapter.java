@@ -24,6 +24,7 @@ import java.util.List;
  */
 public class NewsPagerAdapter extends PagerAdapter {
     List<NewsCategory.DataBean.ChildrenBean> children;
+    private NewsPagerManger manger;
 
     public NewsPagerAdapter(List<NewsCategory.DataBean.ChildrenBean> children) {
         this.children = children;
@@ -48,7 +49,7 @@ public class NewsPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        NewsPagerManger manger = new NewsPagerManger(container);
+        manger = new NewsPagerManger(container);
         View pager = manger.createPager();
         String url = children.get(position).getUrl();
         String newUrl = url.substring(1);
@@ -60,6 +61,7 @@ public class NewsPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        manger.onDestroy();
         container.removeView((View) object);
     }
 
