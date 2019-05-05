@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,8 @@ public class Main2Activity extends MvpActivity<MainPresenter, MainView, AvatarBe
     private TextView toolBarTitleTextView;
     private Toolbar toolBar;
     private DrawerLayout drawLayout;
+    @BindView(R.id.layoutManagerImageView)
+    ImageView layoutManagerImageView;
 
     private List<NewsCategory.DataBean.ChildrenBean> children;
 
@@ -136,6 +139,17 @@ public class Main2Activity extends MvpActivity<MainPresenter, MainView, AvatarBe
                 drawLayout.closeDrawer(Gravity.START);
 
                 return true;
+            }
+        });
+
+        layoutManagerImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PictureFragment fragment = (PictureFragment) Main2Activity.this
+                        .getSupportFragmentManager()
+                        .findFragmentByTag("fragment");
+
+                fragment.changeLayoutManger();
             }
         });
     }
@@ -237,11 +251,12 @@ public class Main2Activity extends MvpActivity<MainPresenter, MainView, AvatarBe
                     }
                     else if ("组图".equals(itemTitle.toString())){
                         baseFragment = new PictureFragment();
+                        layoutManagerImageView.setVisibility(View.VISIBLE);
                     }
                     Main2Activity.this
                             .getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.frameLayout,baseFragment)
+                            .replace(R.id.frameLayout,baseFragment,"fragment")
                             .commit();
                 }
                 toolBarTitleTextView.setText(itemTitle);

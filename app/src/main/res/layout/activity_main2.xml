@@ -30,6 +30,15 @@
                 android:textSize="20sp"
                 android:layout_gravity="center"/>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:padding="@dimen/padding_half"
+                android:layout_gravity="right"
+                android:src="@drawable/icon_pic_grid_type"
+                android:id="@+id/layoutManagerImageView"/>
+
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.BottomNavigationView
